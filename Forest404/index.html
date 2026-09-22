@@ -2,50 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta name="description" content="404"/>
-    <meta name="keywords" content="404"/>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-
-    <title>404</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="404 – Page Not Found">
+    <meta name="keywords" content="404, Page Not Found">
+    <meta name="color-scheme" content="dark">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    keyframes: {
+                        drop: {
+                            '0%': {transform: 'translateY(0)'},
+                            '75%, 100%': {transform: 'translateY(90vh)'},
+                        },
+                        stem: {
+                            '0%, 65%': {opacity: 1},
+                            '75%, 100%': {opacity: 0},
+                        },
+                    },
+                    animation: {
+                        drop: 'drop 0.5s linear infinite',
+                        stem: 'stem 0.5s linear infinite',
+                    },
+                },
+            },
+        };
+    </script>
+    <title>404 – Page Not Found</title>
 </head>
-<body>
+<body class="relative min-h-dvh flex items-center justify-center overflow-hidden px-4 py-8
+             text-white font-sans bg-[url('./assets/img/bg.png')] bg-cover bg-center bg-fixed">
 
+<div class="rain front-row pointer-events-none absolute inset-0 z-10" aria-hidden="true"></div>
+<div class="rain back-row pointer-events-none absolute inset-0 z-10 opacity-50" aria-hidden="true"></div>
 
-<div class="rain front-row"></div>
-<div class="rain back-row"></div>
-<div><p class="text">404 </p>
-    <a href="/" class="bp btn-primary btn">Back to page</a>
-</div>
+<main class="relative z-20 max-w-md w-full text-center">
+    <h1 class="text-7xl sm:text-8xl font-extrabold leading-none text-[#fa0064] drop-shadow-[0_4px_24px_rgba(250,0,100,0.35)]">404</h1>
+    <h2 class="mt-1 mb-2 text-2xl sm:text-3xl font-bold">Lost in the woods</h2>
+    <p class="mb-6 text-lg text-slate-200">The page you're looking for wandered off and got rained on.</p>
 
+    <a href="/"
+       class="inline-block px-6 py-3 rounded-xl font-semibold bg-[#17181c] hover:bg-[#fa0064]
+              hover:-translate-y-0.5 transition">
+        Back to homepage
+    </a>
+</main>
 
 <script>
     function makeItRain() {
-        document.querySelectorAll('.rain').forEach((rain) => {
-            rain.innerHTML = '';
-        });
+        const frontRow = document.querySelector('.rain.front-row');
+        const backRow = document.querySelector('.rain.back-row');
+        frontRow.innerHTML = '';
+        backRow.innerHTML = '';
 
-        let increment = 0;
-        let drops = "";
-        let backDrops = "";
+        const frontDrops = document.createDocumentFragment();
+        const backDrops = document.createDocumentFragment();
 
-        while (increment < 100) {
-            const randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-            const randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-            increment += randoFiver;
-            drops += '<div class="drop" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
-            backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+        let position = 0;
+        while (position < 100) {
+            const delay = Math.floor(Math.random() * 98 + 1);
+            const step = Math.floor(Math.random() * 4 + 2);
+            position += step;
+
+            frontDrops.appendChild(createDrop('left', position, delay));
+            backDrops.appendChild(createDrop('right', position, delay));
         }
-        document.querySelector('.rain.front-row').innerHTML += drops;
-        document.querySelector('.rain.back-row').innerHTML += backDrops;
+
+        frontRow.appendChild(frontDrops);
+        backRow.appendChild(backDrops);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        makeItRain();
-    });
+    function createDrop(side, position, delay) {
+        const duration = `0.5${delay}s`;
+        const animDelay = `0.${delay}s`;
+
+        const drop = document.createElement('div');
+        drop.className = 'absolute w-5 h-[120px] animate-drop';
+        drop.style.setProperty(side, position + '%');
+        drop.style.bottom = '199%';
+        drop.style.animationDelay = animDelay;
+        drop.style.animationDuration = duration;
+
+        const stem = document.createElement('div');
+        stem.className = 'w-px h-[60%] ml-[7px] bg-gradient-to-b from-white/0 to-white/25 animate-stem';
+        stem.style.animationDelay = animDelay;
+        stem.style.animationDuration = duration;
+
+        drop.appendChild(stem);
+        return drop;
+    }
+
+    document.addEventListener('DOMContentLoaded', makeItRain);
 </script>
 </body>
 </html>

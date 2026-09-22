@@ -1,23 +1,51 @@
 <!doctype html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta name="description" content="404"/>
-    <meta name="keywords" content="404"/>
-    <link rel="stylesheet" href="./assets/css/style.css">
-
-    <title>404</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="404 – Page Not Found">
+    <meta name="keywords" content="404, Page Not Found">
+    <meta name="color-scheme" content="dark">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    keyframes: {
+                        float: {
+                            '0%, 100%': {transform: 'translateY(0)'},
+                            '50%': {transform: 'translateY(-30px)'},
+                        },
+                    },
+                    animation: {
+                        float: 'float 6s ease-in-out infinite',
+                    },
+                },
+            },
+        };
+    </script>
+    <title>404 – Page Not Found</title>
 </head>
-<body>
-<img src="assets/img/astronaut.png" class="astronaut" alt="astronaut">
-<canvas id="stars"></canvas>
+<body class="relative min-h-dvh overflow-hidden bg-[#0e1015] text-white font-sans">
 
-<div class="text">Lost in Space,<br> <span>you are so far away from the earth!</span><br>
-    <a href="/" class="btn">Go Back Home</a>
-</div>
+<canvas id="stars" class="fixed inset-0 w-full h-full -z-10" aria-hidden="true"></canvas>
+
+<img src="assets/img/astronaut.png" alt="Floating astronaut"
+     class="fixed select-none pointer-events-none w-[50dvw] mt-[30%] ml-[24%] min-[921px]:w-[25vw] min-[921px]:mt-[9%] min-[921px]:ml-[10%] animate-float">
+
+<main class="fixed top-[70%] left-1/2 min-[921px]:top-1/2 min-[921px]:left-[62%] -translate-x-1/2 -translate-y-1/2 text-center max-w-md px-4
+             pointer-events-none select-none">
+    <h1 class="text-5xl min-[921px]:text-7xl font-extrabold leading-none text-[#ff0066]">404</h1>
+    <h2 class="mt-2 mb-2 text-xl min-[921px]:text-3xl font-bold">Lost in space</h2>
+    <p class="mb-6 text-lg text-slate-300">You've drifted far from Earth. This page doesn't exist out here.</p>
+
+    <a href="/"
+       class="pointer-events-auto inline-block px-6 py-3 rounded-xl font-semibold bg-[#404be3] hover:bg-[#17181c]
+              hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 transition">
+        Go back home
+    </a>
+</main>
+
 <script src="assets/js/script.js"></script>
 </body>
 </html>

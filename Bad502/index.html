@@ -2,34 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta name="description" content="502 – Bad Gateway"/>
-    <meta name="keywords" content="502, Bad Gateway"/>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="502 – Bad Gateway">
+    <meta name="keywords" content="502, Bad Gateway">
+    <meta name="color-scheme" content="dark">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>502 – Bad Gateway</title>
 </head>
-<body>
+<body class="min-h-dvh flex items-center justify-center bg-[#0e1015] text-white font-sans px-4 py-8">
 
-<div class="error text-center">
+<main class="max-w-md w-full text-center">
+    <img class="mx-auto mb-6 w-[min(60vw,320px)] rounded-2xl"
+         src="./assets/img/img.png" alt="Broken server connection illustration" loading="lazy">
 
-    <div class="hero-image">
-        <img src="./assets/img/img.png" alt="..." loading="lazy">
+    <h1 class="text-6xl sm:text-7xl font-extrabold tracking-wide leading-none">502</h1>
+    <h2 class="mt-1 mb-2 text-2xl sm:text-3xl font-bold text-indigo-100">Bad Gateway</h2>
+    <p class="mb-6 text-lg text-slate-300">Something went wrong between the servers. It's usually gone in a minute.</p>
+
+    <div class="flex flex-wrap justify-center gap-3">
+        <button type="button" onclick="location.reload()"
+                class="px-6 py-3 rounded-xl font-semibold bg-gradient-to-br from-[#5b7cfa] to-[#7aa2ff]
+                       shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40 hover:-translate-y-0.5
+                       transition">
+            Try again
+        </button>
+        <a href="/"
+           class="px-6 py-3 rounded-xl font-semibold border border-white/35 hover:border-white/55
+                  hover:bg-white/10 hover:-translate-y-0.5 transition">
+            Go to homepage
+        </a>
     </div>
-
-    <h1 class="code">502</h1>
-    <h2 class="title">Bad Gateway</h2>
-    <p class="subtitle">Oh no, there is a very Bad Gateway!</p>
-
-
-    <div class="actions">
-        <a href="/" class="btn btn-primary btn-lg">Go to Homepage</a>
-        <button class="btn btn-outline-light btn-lg" type="button" onclick="location.reload()">Try Again</button>
-    </div>
-</div>
+</main>
 
 </body>
 </html>
